@@ -1,0 +1,41 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+*.iml
+*.txt
+.idea
+!**/resources/**
+
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+/resources/ПОЛЕЗНЫЕ ССЫЛКИ
+/resources/lesson2/HomeTask1 comments.txt
+/resources/IDEA hotkeys
+/resources/lesson2/Вопросы на повторение.txt
+/resources/lesson2/Lesson2
+/resources/Hе забыть!!!
+/resources/lesson2/Java-issue
