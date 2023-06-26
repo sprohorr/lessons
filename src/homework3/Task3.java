@@ -16,9 +16,7 @@ public class Task3 {
             case "L" -> System.out.println("Большой;");
             case "XL" -> System.out.println("Очень большой;");
             case "XXL" -> System.out.println("Очень-очень большой;");
-            case "XXXL" -> System.out.println("Очень-очень большой;");
-            case "XXXXL" -> System.out.println("Очень-очень большой;");
-            case "XXXXXL" -> System.out.println("Очень-очень большой;");
+            case "XXXL", "XXXXL", "XXXXXL" -> System.out.println("Очень-очень большой;");
             default -> System.out.println("Не верный ввод!");
         }
     }
