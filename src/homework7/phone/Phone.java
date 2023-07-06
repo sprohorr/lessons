@@ -5,13 +5,8 @@ import java.util.Arrays;
 public class Phone {
     private int number;
     private String model;
-    double weight;
-    private String name;
+    private double weight;
 
-    public String receiveCall() {
-        return "Call {" + this.name + "} " + getNumber();
-
-    }
 
     public int getNumber() {
         return number;
@@ -19,8 +14,6 @@ public class Phone {
 
     public Phone(String model, int number, double weight) {
         this(model, number);
-        this.model = model;
-        this.number = number;
         this.weight = weight;
     }
 
@@ -30,17 +23,18 @@ public class Phone {
     }
 
     public Phone() {
-
     }
 
-    public void receiveCall(String name, int number) {
-        this.name = name;
-        this.number = number;
+    public String receiveCall(String name) {
+        return "Call {" + name + "} " + getNumber();
     }
 
-    public void sendMessage(int number, int... number2) {
-        this.number = number;
-        System.out.println(number + " Send a message to this number " + Arrays.toString(number2));
+    public String receiveCall(String name, int number) {
+        return "Call {" + name + " from number: " + number + "} ";
+    }
+
+    public void sendMessage(int... number) {
+        System.out.println("Send a message to this number: " + Arrays.toString(number));
     }
 
 }
