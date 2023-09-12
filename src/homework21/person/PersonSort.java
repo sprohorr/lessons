@@ -37,7 +37,7 @@ public class PersonSort {
     }
 
     public static List<Person> sortPersons(List<Person> personlist) {
-        personlist.sort(Comparator.comparing(Person::getName).thenComparing(Person::getName));
+        personlist.sort(Comparator.comparing(Person::getName).thenComparing(Person::getSurname));
         return personlist;
     }
 
