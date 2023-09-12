@@ -7,64 +7,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PersonSort {
-    private String name;
-    private String surname;
-    private String gender;
-    private Integer age;
+    //"C:\\Users\\User\\IdeaProjects\\text\\temp.txt";
+    public static String filePath;
 
-    public PersonSort(String name, String surname, String gender, Integer age) {
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    static List<PersonSort> list = new ArrayList<>();
-
-    // "C:\\Users\\User\\IdeaProjects\\text\\temp.txt";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String filePath = scanner.nextLine();
+        filePath = scanner.nextLine();
 
-        readFile(filePath);
-        writeFile();
-        countAge();
-        countGender();
+        List<Person> personlist = readFile(filePath);
+        writeFile(personlist);
+        countAge(personlist);
+        countGender(personlist);
     }
 
-    private static void readFile(String filePath) {
+    public static List<Person> readFile(String filePath) {
+        List<Person> list = new ArrayList<>();
         File file = new File(filePath);
         try (FileReader reader = new FileReader(file);
              Scanner scan = new Scanner(reader)) {
@@ -76,21 +33,20 @@ public class PersonSort {
         } catch (IOException e) {
             System.out.println("Failed to read file");
         }
-    }
-
-    public static List<PersonSort> sortPersons() {
-        list.sort(Comparator.comparing(PersonSort::getName));
         return list;
     }
 
-    public static void writeFile() {
-        list = sortPersons();
-        try (FileWriter writer = new FileWriter("C:\\Users\\User\\IdeaProjects\\text\\temp.txt")) {
-            for (PersonSort el : list)
+    public static List<Person> sortPersons(List<Person> personlist) {
+        personlist.sort(Comparator.comparing(Person::getName).thenComparing(Person::getName));
+        return personlist;
+    }
+
+    public static void writeFile(List<Person> personlist) {
+        personlist = sortPersons(personlist);
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (Person el : personlist)
                 try {
-                    writer.write(el.getName() + "," + el.getSurname() + "," + el.getGender() + "," + el.getAge());
-                    writer.write(System.getProperty("line.separator"));
-                    writer.flush();
+                    writer.write(el.getName() + "," + el.getSurname() + "," + el.getGender() + "," + el.getAge() + '\n');
                 } catch (FileNotFoundException e) {
                     System.out.println("Failed to write to the file");
                 }
@@ -99,22 +55,27 @@ public class PersonSort {
         }
     }
 
-    public static void countAge() {
-        long i = list.stream().filter(n -> n.getAge() > 30).count();
-        System.out.println("Count " + i);
+    public static void countAge(List<Person> personlist) {
+        long age = personlist.stream().filter(n -> n.getAge() > 30).count();
+        System.out.println("Count " + age);
     }
 
-    public static void countGender() {
-        long m = list.stream().filter(n -> n.getGender().equals("male")).count();
-        System.out.println("male " + m);
-        long f = list.stream().filter(n -> n.getGender().equals("female")).count();
-        System.out.println("female " + f);
+    public static void countGender(List<Person> personlist) {
+        long male = personlist.stream().filter(n -> n.getGender().equals("male")).count();
+        System.out.println("male " + male);
+        long female = personlist.stream().filter(n -> n.getGender().equals("female")).count();
+        System.out.println("female " + female);
     }
 
-    public static PersonSort createPerson(String s) {
+    public static Person createPerson(String s) {
         String[] strArray = s.split(",");
-        return new PersonSort(strArray[0], strArray[1], strArray[2], Integer.valueOf(strArray[3]));
+        Person person = new Person();
+        person.setName(strArray[0].trim());
+        person.setSurname(strArray[1].trim());
+        person.setGender(strArray[2].trim());
+        person.setAge(Integer.valueOf(strArray[3].trim()));
+        return person;
     }
-
-
 }
+
+
