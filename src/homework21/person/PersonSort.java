@@ -5,21 +5,17 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-
 public class PersonSort {
     //"C:\\Users\\User\\IdeaProjects\\text\\temp.txt";
-    public static String filePath;
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        filePath = scanner.nextLine();
+        String filePath = scanner.nextLine();
 
         List<Person> personlist = readFile(filePath);
-        writeFile(personlist);
+        writeFile(personlist, filePath);
         countAge(personlist);
         countGender(personlist);
     }
-
     public static List<Person> readFile(String filePath) {
         List<Person> list = new ArrayList<>();
         File file = new File(filePath);
@@ -41,7 +37,7 @@ public class PersonSort {
         return personlist;
     }
 
-    public static void writeFile(List<Person> personlist) {
+    public static void writeFile(List<Person> personlist, String filePath) {
         personlist = sortPersons(personlist);
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Person el : personlist)
