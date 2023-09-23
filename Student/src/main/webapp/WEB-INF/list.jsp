@@ -14,7 +14,7 @@
 <body>
 <ul>
     <%
-        List<Student> studentList = (List<Student>) request.getAttribute("student");
+        List<Student> studentList = (List<Student>) request.getAttribute("students");
         if (studentList != null && !studentList.isEmpty()) {
             for (Student s : studentList) {
                 out.println("<li><h2>" + s + "</h2></li>");

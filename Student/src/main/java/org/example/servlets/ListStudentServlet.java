@@ -17,7 +17,7 @@ public class ListStudentServlet extends HttpServlet {
         Model studentModel = Model.getStudentModel();
         List<Student> studentList = studentModel.list();
 
-        req.setAttribute("student", studentList);
+        req.setAttribute("students", studentList);
         getServletContext().getRequestDispatcher("/WEB-INF/list.jsp").forward(req, resp);
 
     }

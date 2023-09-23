@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AddStudentServlet extends HttpServlet {
+    private void callDoGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/add.jsp").forward(req, resp);
@@ -24,7 +28,7 @@ public class AddStudentServlet extends HttpServlet {
         Model studentModel = Model.getStudentModel();
         studentModel.add(student);
 
-        req.setAttribute("student", name);
-        doGet(req, resp);
+        req.setAttribute("studentName", name);
+        callDoGet(req, resp);
     }
 }

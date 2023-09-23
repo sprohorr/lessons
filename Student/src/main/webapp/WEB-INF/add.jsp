@@ -13,8 +13,8 @@
 <body>
 <div>
   <%
-    if (request.getAttribute("student") != null) {
-      out.println("<p>Student '" + request.getAttribute("student") + "' added!</p>");
+    if (request.getAttribute("studentName") != null) {
+      out.println("<p>Student '" + request.getAttribute("studentName") + "' added!</p>");
     }
   %>
   <div>
