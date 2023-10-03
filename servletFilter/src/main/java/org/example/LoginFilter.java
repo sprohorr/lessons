@@ -14,18 +14,15 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
-        String userAuthorized = "user";
-        try {
+        if (req.getMethod().equals("POST")) {
+            String userAuthorized = "user";
             if (userAuthorized.equals(req.getParameter("login"))) {
                 filterChain.doFilter(req, res);
             } else {
                 res.sendRedirect("/hello");
             }
-
-            filterChain.doFilter(req, res);
-        } catch (Exception e) {
-            e.getMessage();
         }
+        filterChain.doFilter(req, res);
     }
 
     @Override

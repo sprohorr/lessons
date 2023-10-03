@@ -16,9 +16,8 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = "/WEB-INF/second.html";
         ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/WEB-INF/second.html");
         requestDispatcher.forward(req, resp);
     }
 }

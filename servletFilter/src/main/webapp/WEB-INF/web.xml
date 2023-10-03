@@ -18,7 +18,7 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/second</url-pattern>
+        <url-pattern>/hello</url-pattern>
     </filter-mapping>
 
     <servlet>
