@@ -9,6 +9,6 @@ import java.io.IOException;
 public class AppServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/App.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/app.html").forward(req, resp);
     }
 }

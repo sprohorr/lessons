@@ -11,8 +11,7 @@
         <h1>Application successfully saved!</h1>
     </div>
     <div>
-        <p>Number of applications</p>
-        ${prepareResultSet}
+        <p>Number of applications: ${resultSet}</p>
     </div>
     <div>
         <a href="/list">Show list</a>

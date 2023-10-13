@@ -18,11 +18,9 @@ public class FilterApplication implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         if (req.getMethod().equals("POST")) {
             if (StringUtils.isNullOrEmpty(req.getParameter("name"))
-                    && StringUtils.isNullOrEmpty(req.getParameter("date"))
-                    && StringUtils.isNullOrEmpty(req.getParameter("description"))) {
+                    || StringUtils.isNullOrEmpty(req.getParameter("date"))
+                    || StringUtils.isNullOrEmpty(req.getParameter("description"))) {
                 resp.sendRedirect("/add");
-            } else {
-                filterChain.doFilter(req, resp);
             }
         }
         filterChain.doFilter(req, resp);

@@ -28,7 +28,6 @@ public class ListServlet extends HttpServlet {
 
         try {
             connection = driverManager.getConnection();
-            connection.setAutoCommit(false);
             try {
                 preparedStatement = connection.prepareStatement("SELECT * FROM table2.hometask7");
                 resultSet = preparedStatement.executeQuery();
@@ -42,8 +41,7 @@ public class ListServlet extends HttpServlet {
                 }
                 req.setAttribute("tableList", tableList);
 
-
-                connection.commit();
+                getServletContext().getRequestDispatcher("/WEB-INF/showList.jsp").forward(req, resp);
             } catch (Exception e) {
                 connection.rollback();
                 e.printStackTrace();
@@ -62,6 +60,6 @@ public class ListServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/Show list.jsp").forward(req, resp);
+
     }
 }

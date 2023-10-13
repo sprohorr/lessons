@@ -14,7 +14,7 @@ import static java.lang.System.out;
 public class ApplicationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/Application form.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/applicationForm.html").forward(req, resp);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ApplicationServlet extends HttpServlet {
         MySQLDriverManager driverManager = MySQLDriverManager.getInstance();
         Connection connection;
         PreparedStatement preparedStatement = null;
-        ResultSet prepareResultSet = null;
+        ResultSet resultSet = null;
         try {
             connection = driverManager.getConnection();
             connection.setAutoCommit(false);
@@ -34,28 +34,34 @@ public class ApplicationServlet extends HttpServlet {
                 preparedStatement.executeUpdate();
 
                 preparedStatement = connection.prepareStatement("SELECT count(*) FROM table2.hometask7");
-                prepareResultSet = preparedStatement.executeQuery();
-                req.setAttribute("prepareResultSet", prepareResultSet);
+                resultSet = preparedStatement.executeQuery();
+                String count = null;
+                while (resultSet.next()) {
+                    count = resultSet.getString(1);
+                }
+                req.setAttribute("resultSet", count);
 
                 connection.commit();
+                getServletContext().getRequestDispatcher("/WEB-INF/successfully.jsp").forward(req, resp);
             } catch (Exception e) {
                 connection.rollback();
                 e.printStackTrace();
                 out.println("Exception!");
             } finally {
-                if (prepareResultSet != null) {
-                    prepareResultSet.close();
+                if (resultSet != null) {
+                    resultSet.close();
                 }
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
                 if (connection != null) {
+                    connection.setAutoCommit(true);
                     connection.close();
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/Successfully.jsp").forward(req, resp);
+
     }
 }

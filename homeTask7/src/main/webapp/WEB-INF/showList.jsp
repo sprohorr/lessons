@@ -5,7 +5,6 @@
     <title>Show list</title>
 </head>
 <body>
-<form method="get" action="/list">
     <table>
         <c:forEach var="table" items="${tableList}">
             <tr>
@@ -17,6 +16,5 @@
     </table>
 
     <a href="/app">Back to main menu</a>
-</form>
 </body>
 </html>
