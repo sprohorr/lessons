@@ -5,7 +5,7 @@
     <title>Add</title>
 </head>
 <body>
-<form method="post" action="/addStudent">
+<form method="post">
     <div>
         <h2>Add a student to a group.</h2>
     </div>

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class ServletAddGroup extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/add/addGroup.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/add/addGroup.jsp").forward(req, resp);
     }
 
     @Override
@@ -32,6 +32,6 @@ public class ServletAddGroup extends HttpServlet {
         } catch (HibernateException he) {
             he.printStackTrace();
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/add/successfullyAddGroup.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/add/successfullyAddGroup.jsp").forward(req, resp);
     }
 }

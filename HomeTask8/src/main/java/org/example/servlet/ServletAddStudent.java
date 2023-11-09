@@ -17,7 +17,7 @@ import java.io.IOException;
 public class ServletAddStudent extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/add/addStudent.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/add/addStudent.jsp").forward(req, resp);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ServletAddStudent extends HttpServlet {
             student.setSurname(req.getParameter("surname"));
             student.setGroupHead(Boolean.parseBoolean(req.getParameter("groupHead")));
             GroupHW8 group = session.load(GroupHW8.class, Integer.parseInt(req.getParameter("groupId")));
-            student.setGroupId(group);
+            student.setGrooup(group);
 
             session.save(student);
             t.commit();
@@ -40,7 +40,7 @@ public class ServletAddStudent extends HttpServlet {
             he.printStackTrace();
         }
 
-        getServletContext().getRequestDispatcher("/WEB-INF/add/successfullyAddStudent.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/add/successfullyAddStudent.jsp").forward(req, resp);
     }
 
 }

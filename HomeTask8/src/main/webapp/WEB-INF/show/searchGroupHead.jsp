@@ -5,7 +5,7 @@
     <title>Search group head</title>
 </head>
 <body>
-<form method="post" action="/groupHead">
+<form method="post">
     <div>
         <h1>Group head.</h1>
     </div>

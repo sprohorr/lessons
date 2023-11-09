@@ -16,7 +16,7 @@ public class StudentHW8 {
     private boolean groupHead;
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private GroupHW8 groupId;
+    private GroupHW8 grooup;
 
     public StudentHW8() {
     }
@@ -53,12 +53,12 @@ public class StudentHW8 {
         this.groupHead = groupHead;
     }
 
-    public GroupHW8 getGroupId() {
-        return groupId;
+    public GroupHW8 getGrooup() {
+        return grooup;
     }
 
-    public void setGroupId(GroupHW8 groupId) {
-        this.groupId = groupId;
+    public void setGrooup(GroupHW8 grooup) {
+        this.grooup = grooup;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class StudentHW8 {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", groupHead='" + groupHead + '\'' +
-                ", group_id=" + groupId +
+                ", group_id=" + grooup +
                 '}';
     }
 }

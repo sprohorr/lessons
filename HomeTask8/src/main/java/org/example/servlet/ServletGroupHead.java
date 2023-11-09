@@ -17,7 +17,7 @@ import java.util.List;
 public class ServletGroupHead extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/show/searchGroupHead.html").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/show/searchGroupHead.jsp").forward(req, resp);
     }
 
     @Override
@@ -25,12 +25,13 @@ public class ServletGroupHead extends HttpServlet {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
 
-        Query<StudentHW8> query = session.createQuery
-                ("FROM  StudentHW8 WHERE groupHead = true AND groupId=" + req.getParameter("id"), StudentHW8.class);
+        Query<StudentHW8> query = session.createQuery("FROM  StudentHW8 WHERE groupHead = true AND grooup=:paramId", StudentHW8.class);
+        query.setParameter("paramId", req.getParameter("id"));
         List<StudentHW8> groupHead = query.getResultList();
         req.setAttribute("groupHead", groupHead);
 
-        Query<GroupHW8> query1 = session.createQuery("FROM GroupHW8 where id =" + req.getParameter("id"), GroupHW8.class);
+        Query<GroupHW8> query1 = session.createQuery("FROM GroupHW8 where id =:paramGrId", GroupHW8.class);
+        query1.setParameter("paramGrId", req.getParameter("id"));
         List<GroupHW8> groupH = query1.getResultList();
         req.setAttribute("groupH", groupH);
 

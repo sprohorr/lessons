@@ -5,12 +5,12 @@
     <title>Search</title>
 </head>
 <body>
-<form method="post" action="/search">
+<form method="post">
     <div>
         <h1>Students</h1>
     </div>
     <div>
-        <h2>Input number group</h2><input type="number" name="id">
+        <h2>Input number group</h2><input type="number" name="numberGroup">
         <br/>
         <button type="submit">Go</button>
     </div>
