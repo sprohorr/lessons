@@ -13,7 +13,7 @@
         <li><a href="/addGroup">Add group.</a></li>
         <li><a href="/addStudent">Add student.</a></li>
         <li><a href="/showGroup">Show list of groups.</a></li>
-        <li><a href="search">Show students list</a></li>
+        <li><a href="/search">Show students list</a></li>
         <li><a href="/groupHead">Show group head</a></li>
     </ul>
 </div>
