@@ -32,6 +32,6 @@ public class ServletAddGroup extends HttpServlet {
         } catch (HibernateException he) {
             he.printStackTrace();
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/add/successfullyAddGroup.jsp").forward(req, resp);
+        resp.sendRedirect("/successfullyAddGroup");
     }
 }

@@ -11,7 +11,7 @@ public class GroupHW8 {
     private int id;
     @Column(name = "title")
     private String title;
-    @OneToMany(mappedBy = "groupId")
+    @OneToMany(mappedBy = "grooup")
     private List<StudentHW8> students;
 
     public GroupHW8() {

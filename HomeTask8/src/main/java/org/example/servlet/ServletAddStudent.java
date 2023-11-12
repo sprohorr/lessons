@@ -39,8 +39,7 @@ public class ServletAddStudent extends HttpServlet {
         } catch (HibernateException he) {
             he.printStackTrace();
         }
-
-        getServletContext().getRequestDispatcher("/WEB-INF/add/successfullyAddStudent.jsp").forward(req, resp);
+        resp.sendRedirect("/successfullyAddStudent");
     }
 
 }

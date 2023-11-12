@@ -51,5 +51,20 @@
         <servlet-name>ServletGroupHead</servlet-name>
         <url-pattern>/groupHead</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>ServletSuccessfullyAddGroup</servlet-name>
+        <servlet-class>org.example.servlet.ServletSuccessfullyAddGroup</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSuccessfullyAddGroup</servlet-name>
+        <url-pattern>/successfullyAddGroup</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletSuccessfullyAddStudent</servlet-name>
+        <servlet-class>org.example.servlet.ServletSuccessfullyAddStudent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSuccessfullyAddStudent</servlet-name>
+        <url-pattern>/successfullyAddStudent</url-pattern>
+    </servlet-mapping>
 </web-app>
