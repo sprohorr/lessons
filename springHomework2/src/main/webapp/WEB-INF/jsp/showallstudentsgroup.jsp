@@ -6,11 +6,15 @@
     <title>List</title>
 </head>
 <body>
-
-<c:forEach var="list" items="${students}">
-    ${list.name}
-    ${list.age}
-    ${list.groupid}
+<c:forEach var="student" items="${student}">
+    <tr>
+        <td>Name:${student.name}</td>
+        <br/>
+        <td>Age:${student.age}</td>
+        <br/>
+        <td>Group:${student.group.id}</td>
+        <br/>
+    </tr>
     <br>
 </c:forEach>
 <a href="/hello/intro">Return to intro</a>

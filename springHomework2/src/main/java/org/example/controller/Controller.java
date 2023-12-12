@@ -2,7 +2,8 @@ package org.example.controller;
 
 import org.example.dto.GroupDTO;
 import org.example.dto.StudentDTO;
-import org.example.service.Service;
+import org.example.service.GroupService;
+import org.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hello")
 public class Controller {
     @Autowired
-    protected Service service;
+    protected StudentService service;
+    @Autowired
+    protected GroupService groupService;
 
     //Intro
     @GetMapping("/intro")
@@ -44,7 +47,7 @@ public class Controller {
 
     @PostMapping("/addgroup")
     public String createGroup(GroupDTO groupDTO) {
-        service.createGroup(groupDTO);
+        groupService.createGroup(groupDTO);
         return "groupsuccessfully";
     }
 
@@ -56,8 +59,8 @@ public class Controller {
     }
 
     @GetMapping("/showallstudentsgroup")
-    public String listStudent(StudentDTO studentDTO) {
-        System.out.println(service.listStudents(studentDTO));
+    public String listStudent(ModelMap modelMap, StudentDTO studentDTO) {
+        modelMap.put("student", service.listStudents(studentDTO));
         return "showallstudentsgroup";
     }
 }

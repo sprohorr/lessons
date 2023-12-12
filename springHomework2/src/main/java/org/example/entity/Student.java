@@ -16,7 +16,7 @@ public class Student {
     private int age;
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private Grooup groupid;
+    private Grooup group;
 
     public Student() {
     }
@@ -46,11 +46,11 @@ public class Student {
     }
 
     public Grooup getGroup() {
-        return groupid;
+        return group;
     }
 
     public void setGroup(Grooup group) {
-        this.groupid = group;
+        this.group = group;
     }
 
     @Override
@@ -58,12 +58,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id == student.id && age == student.age && groupid == student.groupid && Objects.equals(name, student.name);
+        return id == student.id && age == student.age && group == student.group && Objects.equals(name, student.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age, groupid);
+        return Objects.hash(id, name, age, group);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", group=" + groupid +
+                ", group=" + group +
                 '}';
     }
 }
