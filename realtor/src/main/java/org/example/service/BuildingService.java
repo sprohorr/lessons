@@ -4,7 +4,6 @@ import org.example.dto.BuildingDTO;
 import org.example.entity.Building;
 import org.example.repository.BuildingRepository;
 import org.example.repository.DeveloperRepository;
-import org.example.util.TransformerDtoBuilding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +16,6 @@ public class BuildingService {
     protected BuildingRepository buildingRepository;
     @Autowired
     DeveloperRepository developerRepository;
-    @Autowired
-    protected TransformerDtoBuilding transformerDtoBuilding;
 
     public Building createBuilding(int id, Building building) {
         building.setDeveloper(developerRepository.findDeveloperById(id));
