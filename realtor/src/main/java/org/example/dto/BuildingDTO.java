@@ -1,15 +1,15 @@
 package org.example.dto;
 
 
-import org.example.entity.Developer;
+import java.util.Objects;
 
 public class BuildingDTO {
     private int id;
     private String address;
     private int year;
-    private int apartment;
-    private Character basement;
-    private Developer developerId;
+    private int apartments;
+    private boolean basement;
+    private Integer developer;
 
     public int getId() {
         return id;
@@ -35,27 +35,40 @@ public class BuildingDTO {
         this.year = year;
     }
 
-    public int getApartment() {
-        return apartment;
+    public int getApartments() {
+        return apartments;
     }
 
-    public void setApartment(int apartment) {
-        this.apartment = apartment;
+    public void setApartments(int apartments) {
+        this.apartments = apartments;
     }
 
-    public Character getBasement() {
+    public boolean isBasement() {
         return basement;
     }
 
-    public void setBasement(Character basement) {
+    public void setBasement(boolean basement) {
         this.basement = basement;
     }
 
-    public Developer getDeveloperId() {
-        return developerId;
+    public Integer getDeveloper() {
+        return developer;
     }
 
-    public void setDeveloperId(Developer developerId) {
-        this.developerId = developerId;
+    public void setDeveloper(Integer developer) {
+        this.developer = developer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BuildingDTO that = (BuildingDTO) o;
+        return id == that.id && year == that.year && apartments == that.apartments && basement == that.basement && Objects.equals(address, that.address) && Objects.equals(developer, that.developer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, address, year, apartments, basement, developer);
     }
 }

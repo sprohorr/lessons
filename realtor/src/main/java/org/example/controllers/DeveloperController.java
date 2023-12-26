@@ -1,8 +1,6 @@
 package org.example.controllers;
 
 import org.example.dto.DeveloperDTO;
-import org.example.entity.Developer;
-import org.example.repository.DeveloperRepository;
 import org.example.service.DeveloperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DeveloperController {
     @Autowired
     protected DeveloperService developerService;
-    @Autowired
-    protected DeveloperRepository developerRepository;
 
     @GetMapping("/realtor/list")
     public String showDeveloper(ModelMap modelMap) {
-        modelMap.put("developer", developerRepository.findAll());
+        modelMap.put("developers", developerService.findAll());
         return "/realtor/list";
     }
 
@@ -31,22 +27,21 @@ public class DeveloperController {
     }
 
     @PostMapping("/createdeveloper")
-    public String saveDeveloper(ModelMap modelMap, DeveloperDTO developerDTO, Developer developer) {
-        developerService.transformerDeveloperDTO(developerDTO);
-        developerRepository.save(developer);
-        modelMap.put("developer", developer);
-        return "/successfullycreatedeveloper";
+    public String saveDeveloper(ModelMap modelMap, DeveloperDTO developerDTO) {
+        modelMap.put("developer", developerService.createDeveloper(developerDTO));
+        return "redirect:/realtor/list";
     }
 
     @GetMapping("/editdeveloper")
-    public String editDeveloper(ModelMap modelMap, Developer developer) {
-        modelMap.addAttribute("developer", developer);
+    public String editDeveloper(@RequestParam("developer.id") int id, ModelMap modelMap) {
+        modelMap.addAttribute("developer", new DeveloperDTO());
+        modelMap.put("developer", developerService.findDeveloper(id));
         return "/editdeveloper";
     }
 
     @PostMapping("/editdeveloper")
-    public String saveEditDeveloper(@RequestParam("id") int id) {
-        developerService.editDeveloper(id);
-        return "/realtor/list";
+    public String saveEditDeveloper(@RequestParam("developer.id") int id, ModelMap modelMap, DeveloperDTO developerDTO) {
+        modelMap.put("developer", developerService.editDeveloper(id, developerDTO));
+        return "redirect:/realtor/list";
     }
 }

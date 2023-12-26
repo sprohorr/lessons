@@ -1,6 +1,9 @@
 package org.example.entity;
 
+import org.example.util.BooleanConverter;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "building")
@@ -13,13 +16,14 @@ public class Building {
     private String address;
     @Column(name = "year")
     private int year;
-    @Column(name = "apartment")
-    private int apartment;
+    @Column(name = "apartments")
+    private int apartments;
     @Column(name = "basement")
+    @Convert(converter = BooleanConverter.class)
     private boolean basement;
     @ManyToOne
     @JoinColumn(name = "developer_id")
-    private Developer developerId;
+    private Developer developer;
 
     public Building() {
     }
@@ -48,12 +52,12 @@ public class Building {
         this.year = year;
     }
 
-    public int getApartment() {
-        return apartment;
+    public int getApartments() {
+        return apartments;
     }
 
-    public void setApartment(int apartment) {
-        this.apartment = apartment;
+    public void setApartments(int apartments) {
+        this.apartments = apartments;
     }
 
     public boolean isBasement() {
@@ -64,11 +68,24 @@ public class Building {
         this.basement = basement;
     }
 
-    public Developer getDeveloperId() {
-        return developerId;
+    public Developer getDeveloper() {
+        return developer;
     }
 
-    public void setDeveloperId(Developer developerId) {
-        this.developerId = developerId;
+    public void setDeveloper(Developer developer) {
+        this.developer = developer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Building building = (Building) o;
+        return id == building.id && year == building.year && apartments == building.apartments && basement == building.basement && Objects.equals(address, building.address) && Objects.equals(developer, building.developer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, address, year, apartments, basement, developer);
     }
 }

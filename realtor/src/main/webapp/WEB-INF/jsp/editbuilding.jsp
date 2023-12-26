@@ -1,17 +1,13 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add new building</title>
+    <title>Edit building</title>
 </head>
-<body style="background-color: lavender">
+<body>
 <div align="center"><h2 style="color: slateblue">Add new building</h2></div>
-<div align="center" style="color: slateblue">
-    <h3>${developer.name}</h3>
-</div>
 <div align="center">
-    <form:form action="/createbuilding?developer.id=${developer.id}" method="post" modelAttribute="building">
+    <form:form action="/editbuilding?building.id=${building.id}" method="post" modelAttribute="building">
         <table>
             <tr>
                 <td><form:input path="address"/>Address</td>

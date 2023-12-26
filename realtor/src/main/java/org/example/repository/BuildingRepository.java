@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface BuildingRepository extends JpaRepository<Building, Integer> {
-    List<Building> findBuildingByDeveloperId(int id);
+    List<Building> findByDeveloperId(int id);
+
+    Building findBuildingById(int id);
 }

@@ -1,5 +1,7 @@
 package org.example.dto;
 
+import java.util.Objects;
+
 public class DeveloperDTO {
     private int id;
     private String name;
@@ -36,5 +38,18 @@ public class DeveloperDTO {
 
     public void setNameDirector(String nameDirector) {
         this.nameDirector = nameDirector;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DeveloperDTO that = (DeveloperDTO) o;
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(nameDirector, that.nameDirector);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, nameDirector);
     }
 }

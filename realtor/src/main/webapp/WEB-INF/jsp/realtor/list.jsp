@@ -11,22 +11,21 @@
 
     <title>List</title>
 </head>
-<body>
+<body style="background-color: lavender">
 <div align="center">
     <h2 style="color: slateblue">List developer</h2>
 </div>
-<div style="max-width: 1500px">
-    <c:forEach items="${developer}" var="developer">
-        <div class="card" style="color: slateblue">
+<div style=" max-width: 1500px">
+    <c:forEach items="${developers}" var="developer">
+        <div class="card" style="background-color: lavender; color: slateblue">
             <div class="card-body">
-                <form method="get">
-                    <a href="/realtor/buildinglist?id=${developer.id}"><h5 class="card-text">${developer.name}</h5></a>
-                </form>
-                <a href="/editdeveloper?id=${developer.id}">Edit</a>
+                <a href="/realtor/buildinglist?developer.id=${developer.id}"><h5
+                        class="card-text">${developer.name}</h5></a>
+                <a href="/editdeveloper?developer.id=${developer.id}">Edit</a>
             </div>
         </div>
     </c:forEach>
-    <a href="/createdeveloper"><h5>Create new developer</h5></a>
+    <a href="/createdeveloper"><h5 style="color: slateblue">Create new developer</h5></a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

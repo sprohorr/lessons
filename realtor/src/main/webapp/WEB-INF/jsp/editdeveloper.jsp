@@ -1,14 +1,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Edit developer</title>
 </head>
-<body>
-<div><h2 style="color: slateblue">Edit developer</h2></div>
+<body style="background-color: lavender">
+<div><h2 align="center" style="color: slateblue">Edit developer</h2></div>
 <div align="center">
-    <form:form action="/editdeveloper?${developer.id}" method="post" modelAttribute="developer">
+    <form:form action="${pageContext.request.contextPath}/editdeveloper?developer.id=${developer.id}" method="post"
+               modelAttribute="developer">
         <table>
             <tr>
                 <td>Name</td>

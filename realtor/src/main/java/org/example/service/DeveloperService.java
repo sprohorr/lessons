@@ -3,28 +3,33 @@ package org.example.service;
 import org.example.dto.DeveloperDTO;
 import org.example.entity.Developer;
 import org.example.repository.DeveloperRepository;
+import org.example.util.TransformerDtoDeveloper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Service
 public class DeveloperService {
     @Autowired
     protected DeveloperRepository developerRepository;
+    @Autowired
+    protected TransformerDtoDeveloper transformerDTO;
 
-    public Developer transformerDeveloperDTO(DeveloperDTO developerDTO) {
-        Developer developer = new Developer();
-        developer.setName(developerDTO.getName());
-        developer.setEmail(developer.getEmail());
-        developer.setNameDirector(developerDTO.getNameDirector());
-        return developer;
+    public List<Developer> findAll() {
+        return developerRepository.findAll();
     }
 
-    public Developer editDeveloper(@RequestParam("id") int id) {
-        Developer developer = new Developer();
-        DeveloperDTO developerDTO = developerRepository.findDeveloperById(id);
-        transformerDeveloperDTO(developerDTO);
-        developerRepository.save(developer);
-        return developer;
+    public Developer findDeveloper(int id) {
+        return developerRepository.findDeveloperById(id);
+    }
+
+    public Developer createDeveloper(DeveloperDTO developerDTO) {
+        return developerRepository.save(transformerDTO.saveDtoTransformDeveloper(developerDTO));
+    }
+
+    public Developer editDeveloper(int id, DeveloperDTO developerDTO) {
+        Developer developer = developerRepository.findDeveloperById(id);
+        return developerRepository.save(transformerDTO.editDtoTransformDeveloper(developerDTO, developer));
     }
 }
